@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import { swaggerUi, specs } from "./modules/swagger";
+import { graphRouter } from "./routers/graphRouter";
 
 const app = express();
 
@@ -20,5 +21,8 @@ app.use(
 app.get("/", (req, res) => {
   res.send("안녕하세요, 레이서 프로젝트 API 입니다.");
 });
+
+app.use(graphRouter);
+
 
 export { app };
