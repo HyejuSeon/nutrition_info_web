@@ -51,6 +51,40 @@ graphRouter.get('/graph/:graphId',
 });
 
 
+// ------- 음식 영양성분 데이터 전체 조회 -------
+
+/**
+ * @swagger
+ * /food:
+ *   get:
+ *     summary: 데이터 전체 조회
+ *     tags:
+ *     - Food
+ *     description: 그래프에 사용될 음식 영양성분 데이터 전체를 반환
+ *     produces:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get(
+  "/food",
+   errorMiddleware,
+  async (req, res, next) => {
+    try {
+      const foodList = await graphService.getFood();
+      
+      // 조회된 데이터가 없으면 에러 반환
+      if (foodList.error) {
+        throw new Error(foodList.errorMessage);
+      }
+      // 조회된 데이터가 있으면 결과와 함께 반환
+      res.status(200).json(foodList);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 
 export { graphRouter };
