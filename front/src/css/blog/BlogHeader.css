@@ -1,0 +1,86 @@
+.blogHeaderContainer {
+
+width: auto;
+height: 270px;
+
+}
+
+.blogHeader {
+
+  width: 100%;
+  height: 100%;
+  background-image: url(../../images/blog/FoodLogBlog3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.naviBar {
+
+width: 100%;
+height: 20%;
+display: flex;
+flex-direction: row;
+text-align: center;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: white;
+
+
+}
+
+.navi1 {
+
+  width: 25%;
+  height: 100%;
+
+}
+
+.naviTitle {
+
+  width: 5%;
+  height: 100%;
+  font-size: 30px;
+  line-height: 3;
+}
+
+
+.navi2 {
+
+  width: 30%;
+  height: 100%;
+}
+
+.naviContent {
+
+  width: 25%;
+  height: 100%;
+  line-height: 9;
+  font-size: 10px;
+  font-weight:bold
+}
+
+.naviContent button {
+  text-decoration: none;
+  color: white;
+  border: none;
+  background: none;
+  
+}
+
+.naviContent button:hover {
+  cursor: pointer;
+}
+
+.naviContent a {
+
+  margin-right: 25px;
+}
+
+.navi3 {
+
+  width: 15%;
+  height: 100%;
+
+}
+
+

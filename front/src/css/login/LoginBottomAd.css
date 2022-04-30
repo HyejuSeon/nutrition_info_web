@@ -1,0 +1,12 @@
+.bottomAdContainer {
+  width: 100%;
+  height: 30%;
+  background-color: white;
+  padding-top: 10px;
+}
+
+.bottomAdContainer img {
+  width: 100%;
+  height: 100%;
+
+}

@@ -1,0 +1,86 @@
+.MainMiddleContainer {
+  background-color: #FFF5EC;
+  width: 1680px;
+  height: 500px;
+
+}
+
+
+.MainMiddle {
+  background-color: #FFF5EC; 
+  width: 1000px;
+  height: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.middleBox1 {
+  width: 600px;
+  height: 500px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.middleBox1-1 {
+  width: 300px;
+  height: 250px; 
+  
+
+}
+
+.row1 {
+  color: orange;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.row2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.row3 {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.row4 {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.row5 {
+  font-weight: bolder;
+}
+
+.row6 {
+  font-weight: bolder;
+}
+
+.row7 {
+  font-weight: bolder;
+}
+
+
+.middleBox2 {
+  flex: auto;
+  display: flex;
+  align-items: center;
+}
+
+.middleBox2-1 {
+  width: 300px;
+  height: 250px;
+  color: white
+}
+
+.middleBox2-1 img {
+  width: 100%;
+  height: 100%;
+  border-radius: 3mm;
+}

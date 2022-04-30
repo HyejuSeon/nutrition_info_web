@@ -1,0 +1,17 @@
+.blogWrapper {
+
+  width: 100vw;
+  height: 100vh;
+  
+}
+
+.blogContainer {
+
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+
+  min-width: 1500px;
+  min-height: 1200px;
+}
+
