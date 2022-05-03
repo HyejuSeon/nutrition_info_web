@@ -1,0 +1,19 @@
+.logo {
+    display: flex;
+    margin-left: 3rem;
+    font-weight: bold;
+    gap: 1rem;
+    font-size: 57px;
+    align-items: center;
+}
+
+
+
+.logo>img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.logo>span>span {
+    color: var(--pink)
+}
