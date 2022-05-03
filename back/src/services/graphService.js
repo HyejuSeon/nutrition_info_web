@@ -1,4 +1,4 @@
-import { User, Graph, Food} from "../db";
+import { User, Graph} from "../db";
 
 class graphService {
     // 그래프 static 이미지
@@ -12,18 +12,6 @@ class graphService {
         }
         graph.errorMessage = null;
         return graph
-    }
-
-    // 데이터세트 전체
-    static async getFood() {
-        const food = await Food.findAll();
-        if (!food) {
-                const errorMessage =
-                "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
-                return { errorMessage };
-            }
-        food.errorMessage = null;
-        return food
     }
 }
 
