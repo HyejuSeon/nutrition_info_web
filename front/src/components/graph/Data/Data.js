@@ -24,6 +24,6 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: 'Scatter chart'
+    heading: 'Bubble chart'
   },
 ];
