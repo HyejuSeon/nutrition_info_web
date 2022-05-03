@@ -49,7 +49,7 @@ const graphRouter = Router();
 // ------- 음식 이름 리스트 조회 -------
 /**
  * @swagger
- * /food/foodName:
+ * /food/foodname:
  *   get:
  *     summary: 음식 이름(영어) 리스트 조회
  *     tags:
@@ -62,7 +62,7 @@ const graphRouter = Router();
  *         description: success
  */
  graphRouter.get(
-  "/food/foodName",
+  "/food/foodname",
    errorMiddleware,
   async (req, res, next) => {
     try {
@@ -82,7 +82,7 @@ const graphRouter = Router();
 
 /**
  * @swagger
- * /food/foodKorName:
+ * /food/foodkorname:
  *   get:
  *     summary: 음식 이름(한글) 리스트 조회
  *     tags:
@@ -95,7 +95,7 @@ const graphRouter = Router();
  *         description: success
  */
  graphRouter.get(
-  "/food/foodKorName",
+  "/food/foodkorname",
    errorMiddleware,
   async (req, res, next) => {
     try {
