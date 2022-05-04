@@ -2,10 +2,15 @@ import { Schema, model } from "mongoose";
 
 const articleSchema = new Schema(
     {
-    // 게시글 작성자
-    loginId: {
-        type: String,
-        required: true,
+    // // 게시글 작성자
+    // loginId: {
+    //     type: String,
+    //     required: true,
+    // },
+    // 게시글 작성자 닉네임
+    nickName: {
+      type: String,
+      required: true,
     },
     // 게시글 제목
     title: {
@@ -17,16 +22,20 @@ const articleSchema = new Schema(
       type: String,
       required: true,
     },
-    // 게시글의 고유 id
+    // 유저의 고유 id
     id: {
       type: String,
       required: true,
     },
-    // 게시글 작성자의 고유 id
-    userId: {
+    // 이미지 파일 경로
+    filePath: {
       type: String,
-      required: true,
     },
+    // // 게시글 작성자의 고유 id
+    // userId: {
+    //   type: String,
+    //   required: true,
+    // },
     // 게시글 좋아요 수
     likeCount: {
         type: Number,

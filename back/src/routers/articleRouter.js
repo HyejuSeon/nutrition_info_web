@@ -1,10 +1,13 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { Article } from "../db";
+import { loginRequired } from "../middlewares/loginRequired";
 import { ArticleService } from "../services/articleService";
+import { userAuthService } from "../services/userService";
 
 const articleRouter = Router();
 const viewObj = new Object()
+const upload = require("../modules/multer")
 
 /**
  *  @swagger
@@ -22,13 +25,10 @@ const viewObj = new Object()
  *           schema:
  *             type: object
  *             required:
- *               - userId
- *                 loginId
+ *               - loginId
  *                 title
  *                 content
  *             properties:
- *               userId:
- *                 type: string
  *               loginId:
  *                 type: string
  *               title:
@@ -59,19 +59,20 @@ const viewObj = new Object()
  *           description: Register article.
  */
 
-articleRouter.post("/article/create", async function(req, res, next){
+articleRouter.post("/article/create", loginRequired, async function(req, res, next){
     try {
         if (is.emptyObject(req.body)) {
           throw new Error(
             "headers의 Content-Type을 application/json으로 설정해주세요"
           );
         }
-    const {userId, loginId, title, content} = req.body;
+    const {title, content, nickName, filePath} = req.body;
+    
     const newArticle = await ArticleService.addArticle({
-        userId,
-        loginId,
+        nickName,
         title,
         content,
+        filePath,
     });
     if (newArticle.errorMessage) {
         throw new Error(newArticle.errorMessage);
@@ -81,6 +82,55 @@ articleRouter.post("/article/create", async function(req, res, next){
       next(error);
     }
   });
+
+
+articleRouter.post("/article/uploadFile", //loginRequired, 
+  upload.single('image'), async function(req, res, next){
+  try{
+    // const userId = req.currentUserId;
+    // const currentUserInfo = await userAuthService.getUserInfo({ userId });
+
+    // if (currentUserInfo.errorMessage){
+    //   throw new Error(currentUserInfo.errorMessage);
+    // }
+
+    const fileData = req.file;
+
+
+    if (fileData === undefined){
+      return res.status(202).json({
+        error: false,
+      });
+    } else{
+      res.status(200).send(fileData);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+articleRouter.put("/article/saveFile", //loginRequired, 
+  async function(req, res, next) {
+  try{
+  //   const userId = req.currentUserId;
+  //   const currentUserInfo = await userAuthService.getUserInfo({ userId });
+
+  //   if (currentUserInfo.errorMessage){
+  //     throw new Error(currentUserInfo.errorMessage);
+  // }
+
+  const { articleId, filePath } = req.body;
+
+  const newArticleFile = await ArticleService.addFileInfo({ articleId, filePath });
+  console.log(newArticleFile)
+  if (newArticleFile){
+    throw new Error(newArticleFile.errorMessage);
+  }
+  res.status(200).json(newArticleFile);
+} catch (error){
+  next(error);
+}
+});
 
 
 /**
@@ -204,7 +254,7 @@ articleRouter.get("/articlelist", async function (req, res, next){
  *           description: Set article.
  */
 
-articleRouter.put("/article/:id", async function (req, res, next) {
+articleRouter.put("/article/:id", loginRequired, async function (req, res, next) {
   try{
       const articleId = req.params.id;
 
@@ -244,7 +294,7 @@ articleRouter.put("/article/:id", async function (req, res, next) {
  *           description: Delete article.
  */
 
-articleRouter.delete("/article/:id", async function (req, res, next) {
+articleRouter.delete("/article/:id", loginRequired, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const articleId = req.params.id;
@@ -260,6 +310,32 @@ articleRouter.delete("/article/:id", async function (req, res, next) {
   } catch (error) {
     next(error);
   }
+});
+
+
+//pagination
+articleRouter.get('/', async function(req, res){ // 1
+  var page = Math.max(1, parseInt(req.query.page));   // 2
+  var limit = Math.max(1, parseInt(req.query.limit)); // 2
+  page = !isNaN(page)?page:1;                         // 3
+  limit = !isNaN(limit)?limit:10;                     // 3
+
+  var skip = (page-1)*limit; // 4
+  var count = await Post.countDocuments({}); // 5
+  var maxPage = Math.ceil(count/limit); // 6
+  var posts = await Post.find({}) // 7
+    .populate('author')
+    .sort('-createdAt')
+    .skip(skip)   // 8
+    .limit(limit) // 8
+    .exec();
+
+  res.render('posts/index', {
+    posts:posts,
+    currentPage:page, // 9
+    maxPage:maxPage,  // 9
+    limit:limit       // 9
+  });
 });
 
 
