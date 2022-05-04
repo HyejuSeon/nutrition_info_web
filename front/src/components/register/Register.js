@@ -47,6 +47,8 @@ async function handleSubmit() {
     navigate("/login");
   } catch (err) {
     console.log("회원가입에 실패하였습니다.", err);
+    alert("아이디가 중복되었습니다. 새로운 아이디를 사용해주세요.")
+
   }
 };
 
@@ -195,17 +197,17 @@ const registerationValid = (isIdValid&&isPasswordValid&&isconfirmPasswordValid&&
       <div className="idContainer">
         <div className="idTitle">아이디</div>
         <input className='idBox' type='text' onBlur={(e) => setLoginId(e.target.value)} />
-        <div className='checker'>{idDefaultValid ? '' : idBlankValid ? '필수 정보입니다.' : isIdValid ? <span>멋진 아이디네요!</span> : '6~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용해주세요.'}</div>
+        <div className='checker'>{idDefaultValid ? '' : idBlankValid ? '필수 정보입니다.' : isIdValid ? <span className="verified">멋진 아이디네요!</span> : '6~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용해주세요.'}</div>
       </div>
 
       <div className="passwordContainer">
         <div className="passowrdTitle">비밀번호</div>
         <input className='passwordBox' type='password' onBlur={(e)=> setPassword(e.target.value)} />
-        <div className='checker'>{passwordDefaultValid ? '' : passwordBlankValid ? '필수 정보입니다' : isPasswordValid ? <span>훌륭한 비밀번호입니다!</span> : '8~20자로 영문과 숫자를 조합해주세요.'}</div>
+        <div className='checker'>{passwordDefaultValid ? '' : passwordBlankValid ? '필수 정보입니다' : isPasswordValid ? <span className="verified">훌륭한 비밀번호입니다!</span> : '8~20자로 영문과 숫자를 조합해주세요.'}</div>
         
         <div className='confirmTitle'>비밀번호 재확인</div>
         <input className="confirmBox" type='password' onInput={(e)=>setConfirmPassword(e.target.value)} onBlur={confirmPasswordCheck} />
-        <div className="checker">{confirmPasswordDefaultValid ? '' : isconfirmPasswordValid ? <span>비밀번호 확인이 완료되었습니다.</span> : '입력한 비밀번호를 다시 확인해주세요.'}</div>
+        <div className="checker">{confirmPasswordDefaultValid ? '' : isconfirmPasswordValid ? <span className="verified">비밀번호 확인이 완료되었습니다.</span> : '입력한 비밀번호를 다시 확인해주세요.'}</div>
       </div>
 
       <div className="nameContainer">

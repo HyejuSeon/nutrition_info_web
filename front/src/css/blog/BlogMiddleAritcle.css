@@ -1,22 +1,49 @@
+.mainTitle {
+  margin-top: 15px;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #F2F2F2;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+}
+
 
 .blogMiddleArticleContainer {
 
   width: auto;
-  height: 880px;
+  height: 760px;
   background-color: #F2F2F2;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .blogMiddleAritcleBox {
 
   width: 40%;
-  height: 90%;
+  height: 80%;
   background-color: #F2F2F2;
   padding: 10px;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 .articleBoxTitle {
 
@@ -177,6 +204,6 @@ img {
   font-size: 2px;
 
 
-}
+} */
 
 

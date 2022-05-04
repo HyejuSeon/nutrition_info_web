@@ -266,6 +266,6 @@ input::-webkit-inner-spin-button {
 
 /* 올바른 id와 비밀번호를 입력했을시 */
 
-span {
+.verified {
   color: #16A628;
 }
