@@ -1,4 +1,4 @@
-import { User, Graph} from "../db";
+import { User, Graph, Food} from "../db";
 
 class graphService {
     // 도넛 차트 -- 카테고리의 평균 영양성분 구성
@@ -14,6 +14,21 @@ class graphService {
             }
         nutrientsAvgList.errorMessage = null;
         return nutrientsAvgList
+    }
+
+    // 레이터 차트 -- 음식의 영양성분 구성
+    static async getFoodNutrients({ currentFoodOriginal }) {
+        // DB에 저장된 형태로 변경 (첫 자리만 대문자)
+        const currentFood = currentFoodOriginal[0].toUpperCase() + currentFoodOriginal.slice(1);
+        
+        const nutrientsList = await Food.findByFood({ currentFood });
+        if (!nutrientsList) {
+                const errorMessage =
+                "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
+                return { errorMessage };
+            }
+        nutrientsList.errorMessage = null;
+        return nutrientsList
     }
 
 

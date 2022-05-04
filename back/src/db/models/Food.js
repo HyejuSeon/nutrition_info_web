@@ -20,7 +20,8 @@ class Food {
   static async findByCategory({ currentCategory }) {
     const nutrientsAvgCategory = await FoodModel.aggregate([
       { $match: { category: currentCategory } }, // 카테고리 조건
-      { // 평균으로 영양성분 집계
+      {
+        // 평균으로 영양성분 집계
         $group: {
           _id: "$category",
           protein: { $avg: "$protein" },
@@ -30,7 +31,8 @@ class Food {
           carbs: { $avg: "$carbs" },
         },
       },
-      { // 반올림 표시
+      {
+        // 반올림 표시
         $project: {
           protein: { $round: ["$protein", 2] },
           fat: { $round: ["$fat", 2] },
@@ -41,6 +43,15 @@ class Food {
       },
     ]);
     return nutrientsAvgCategory;
+  }
+
+  // 음식의 영양성분 조회
+  static async findByFood({ currentFood }) {
+    const nutrientsFood = await FoodModel.find(
+      { foodName: currentFood },
+      { _id: 0, foodId: 0, category: 0, measure: 0 }
+    );
+    return nutrientsFood;
   }
 
   // 데이터 전체 조회
