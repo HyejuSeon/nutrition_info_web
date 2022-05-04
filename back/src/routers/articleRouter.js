@@ -59,20 +59,21 @@ const upload = require("../modules/multer")
  *           description: Register article.
  */
 
-articleRouter.post("/article/create", loginRequired, async function(req, res, next){
+articleRouter.post("/article/create", //loginRequired, 
+  async function(req, res, next){
     try {
         if (is.emptyObject(req.body)) {
           throw new Error(
             "headers의 Content-Type을 application/json으로 설정해주세요"
           );
         }
-    const {title, content, nickName, filePath} = req.body;
-    
+    const {title, nickName, content, filePath} = req.body;
+
     const newArticle = await ArticleService.addArticle({
-        nickName,
-        title,
-        content,
-        filePath,
+        nickName: nickName,
+        title: title,
+        content: content,
+        filePath: filePath,
     });
     if (newArticle.errorMessage) {
         throw new Error(newArticle.errorMessage);
@@ -89,11 +90,10 @@ articleRouter.post("/article/uploadFile", //loginRequired,
   try{
     // const userId = req.currentUserId;
     // const currentUserInfo = await userAuthService.getUserInfo({ userId });
-
+    // console.log(currentUserInfo)
     // if (currentUserInfo.errorMessage){
     //   throw new Error(currentUserInfo.errorMessage);
     // }
-
     const fileData = req.file;
 
 
@@ -102,7 +102,7 @@ articleRouter.post("/article/uploadFile", //loginRequired,
         error: false,
       });
     } else{
-      res.status(200).send(fileData);
+      res.status(200).send(fileData.location);
     }
   } catch (error) {
     next(error);

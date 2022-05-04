@@ -19,13 +19,15 @@
   width: 300px;
   border: none;
   outline-style: hidden;
-  
+  margin-right: 10px;
   
 }
 
-.rowSpace {
-  width: 150px;
-
+.QuillNickname {
+  width: 152px;
+  margin-right: 10px;
+  border: none;
+  outline-style: hidden;
 
 }
 

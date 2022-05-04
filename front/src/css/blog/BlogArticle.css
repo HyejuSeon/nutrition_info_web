@@ -18,19 +18,19 @@
 
 }
 
-.title {
+.articleTitle {
   width: 60%;
   height: 100%;
   background-color: blueviolet;
 }
 
-.date {
+.articleDate {
   width: 20%;
   height: 100%;
   background-color: aquamarine;
 }
 
-.author {
+.articleAuthor {
   width: 20%;
   height: 100%;
   background-color: brown;
@@ -63,7 +63,7 @@
   border-bottom: solid;
 }
 
-.recommand {
+.articleRecommand {
   width: 100%;
   height: 7.5%;
   background-color: chocolate;

@@ -2,7 +2,7 @@ import { Article } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class ArticleService {
-    static async addArticle({ userId, loginId, title, content }){
+    static async addArticle({ nickName, title, content, filePath }){
         const id = uuidv4();
         
         // id : article 고유 id
@@ -11,7 +11,7 @@ class ArticleService {
         // title : 게시글 제목
         // content : 게시글 내용
         
-        const newArticle = { id, userId, loginId, title, content };
+        const newArticle = { nickName, title, content, filePath };
         const createdNewArticle = await Article.create({ newArticle });
 
         return createdNewArticle

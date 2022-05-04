@@ -5,14 +5,76 @@ import '../../css/blog/BlogArticle.css'
 
 function BlogArticle() {
 
+//   articleRouter.post("/article/create", loginRequired, async function(req, res, next){
+//     try {
+//         if (is.emptyObject(req.body)) {
+//           throw new Error(
+//             "headers의 Content-Type을 application/json으로 설정해주세요"
+//           );
+//         }
+//     const {title, content, nickName, filePath} = req.body;
+    
+//     const newArticle = await ArticleService.addArticle({
+//         nickName,
+//         title,
+//         content,
+//         filePath,
+//     });
+//     if (newArticle.errorMessage) {
+//         throw new Error(newArticle.errorMessage);
+//     }
+//       res.status(201).json(newArticle);
+//     } catch (error) {
+//       next(error);
+//     }
+//   });
+
+
+// articleRouter.post("/article/uploadFile", 
+//   upload.single('image'), async function(req, res, next){
+//   try{
+
+//     const fileData = req.file;
+
+//     if (fileData === undefined){
+//       return res.status(202).json({
+//         error: false,
+//       });
+//     } else{
+//       res.status(200).send(fileData);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// articleRouter.put("/article/saveFile",
+//   async function(req, res, next) {
+//   try{
+
+//   const { articleId, filePath } = req.body;
+
+//   const newArticleFile = await ArticleService.addFileInfo({ articleId, filePath });
+//   console.log(newArticleFile)
+//   if (newArticleFile){
+//     throw new Error(newArticleFile.errorMessage);
+//   }
+//   res.status(200).json(newArticleFile);
+// } catch (error){
+//   next(error);
+// }
+// });
+
+
+
   return (
     
     <div className="articleWrapper">
       <div className="articleContainer">
         <div className="aritcleTitleBox">
-          <div className="title">글 입력창에 받은 제목</div>
-          <div className="date">백엔드에서 계산된 글 작성 시간</div>
-          <div className="author">글 입력창에서 입력한 닉네임</div>
+          <div className="articleTitle">글 입력창에 받은 제목</div>
+          <div className="articleDate">백엔드에서 계산된 글 작성 시간</div>
+          <div className="articleAuthor">글 입력창에서 입력한 닉네임</div>
         </div>
         <div className="articleImageBox">
         <div className="articleImage">이미지 경로를 URL로 넣습니다.</div> 
@@ -24,7 +86,7 @@ function BlogArticle() {
             잘 되네요. div태그안에 받아온 p태그를 전부 넣을 수 있으면 적용하는데 문제는 없을것 같습니다.
           </p>
         </div>
-        <div className="recommand">
+        <div className="articleRecommand">
           여깄다가 좋아요 버튼을 넣고 누를시 좋아요가 한번 늘어나고
           한번 누르면 버튼을 정지시킬 생각입니다. 
         </div>
