@@ -196,7 +196,7 @@ const graphRouter = Router();
    errorMiddleware,
   async (req, res, next) => {
     try {
-      const foodList = await chartService.getFood();
+      const foodList = await foodService.getFood();
       
       // 조회된 데이터가 없으면 에러 반환
       if (foodList.error) {
