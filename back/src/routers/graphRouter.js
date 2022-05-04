@@ -129,6 +129,51 @@ const graphRouter = Router();
   }
 );
 
+// 레이더차트 -- 특정 음식 영양성분 구성 시각화
+/**
+ * @swagger
+ * /nutrients?food=almonds:
+ *   get:
+ *     summary: 레이더차트 - 특정 음식의 영양성분 조회
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 음식의 영양성분 수치들을 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: food
+ *         in: query
+ *         required: true
+ *         description: 음식명 (소문자)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: success
+ */
+ graphRouter.get(
+  "/nutrients",
+   errorMiddleware,
+  async (req, res, next) => {
+    try {
+      const currentFoodOriginal = req.query.food;
+      const nutrients = await graphService.getFoodNutrients({ currentFoodOriginal });
+      
+      // 조회된 데이터가 없으면 에러 반환
+      if (nutrients.error) {
+        throw new Error(nutrients.errorMessage);
+      }
+      // 조회된 데이터가 있으면 결과와 함께 반환
+      res.status(200).json(nutrients);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+
+
+
 
 
 
