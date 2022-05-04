@@ -14,9 +14,12 @@ class foodService {
         return categoriesList
     }
 
-    // 음식 이름(영어) 목록 전체
-    static async getFoodNames() {
-        const foodNamesList = await Food.findFoodNames();
+    // 음식 이름(영&한) 목록 전체
+    static async getFoodNames({ currentCategoryOriginal }) {
+        // DB의 저장 형식으로 문자열 형태 변경 (첫 자리만 대문자)
+        const currentCategory = currentCategoryOriginal[0].toUpperCase() + currentCategoryOriginal.slice(1);
+
+        const foodNamesList = await Food.findFoodNames({ currentCategory });
         if (!foodNamesList) {
                 const errorMessage =
                 "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
@@ -25,20 +28,6 @@ class foodService {
             foodNamesList.errorMessage = null;
         return foodNamesList
     }
-    // 음식 이름(한글) 목록 전체
-    static async getFoodKorNames() {
-        const foodNamesList = await Food.findFoodKorNames();
-        if (!foodNamesList) {
-                const errorMessage =
-                "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
-                return { errorMessage };
-            }
-            foodNamesList.errorMessage = null;
-        return foodNamesList
-    }
-
-
-
 
 
     // TEST: 데이터세트 전체

@@ -5,9 +5,9 @@ import { errorMiddleware } from "../middlewares/errorMiddleware";
 
 const graphRouter = Router();
 
-// 도넛차트 - 특정 카테고리의 영양성분 구성 비율 시각화
+// ------------------- 사이드바 -------------------
 
-// ------- 음식 카테고리 리스트 조회 -------
+// 음식 카테고리 리스트 조회
 /**
  * @swagger
  * /food/category:
@@ -41,22 +41,24 @@ const graphRouter = Router();
   }
 );
 
-
-
-
-// 방사형차트 - 특정 음식 영양성분 구성 비율 시각화
-
-// ------- 음식 이름 리스트 조회 -------
+// 음식 이름 리스트 조회
 /**
  * @swagger
- * /food/foodname:
+ * /food/foodname?category=desserts:
  *   get:
- *     summary: 음식 이름(영어) 리스트 조회
+ *     summary: 카테고리 하위 음식 이름 리스트 조회
  *     tags:
  *     - Food
- *     description: 유저가 선택할 음식이름(영어) 전체 목록이 반환
+ *     description: 유저가 선택한 카테고리에 속한 음식이름(영&한) 전체 목록이 반환
  *     produces:
  *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: success
@@ -66,7 +68,8 @@ const graphRouter = Router();
    errorMiddleware,
   async (req, res, next) => {
     try {
-      const foodNames = await foodService.getFoodNames();
+      const currentCategoryOriginal = req.query.category;
+      const foodNames = await foodService.getFoodNames({ currentCategoryOriginal });
       
       // 조회된 데이터가 없으면 에러 반환
       if (foodNames.error) {
@@ -80,41 +83,51 @@ const graphRouter = Router();
   }
 );
 
+
+
+// ------------------- 시각화 -------------------
+
+// 도넛차트 -- 특정 카테고리의 영양성분 평균 구성 시각화
 /**
  * @swagger
- * /food/foodkorname:
+ * /nutrients-avg?category=desserts:
  *   get:
- *     summary: 음식 이름(한글) 리스트 조회
+ *     summary: 도넛차트 - 해당 카테고리의 평균 영양성분 구성 조회
  *     tags:
- *     - Food
- *     description: 유저가 선택할 음식이름(한글) 전체 목록이 반환
+ *     - Graph
+ *     description: 유저가 선택한 카테고리의 평균 영양성분 수치들이 반환
  *     produces:
  *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: success
  */
  graphRouter.get(
-  "/food/foodkorname",
+  "/nutrients-avg",
    errorMiddleware,
   async (req, res, next) => {
     try {
-      const foodKorNames = await foodService.getFoodKorNames();
+      const currentCategoryOriginal = req.query.category;
+      const nutrientsAvg = await graphService.getNutrientsAvg({ currentCategoryOriginal });
       
       // 조회된 데이터가 없으면 에러 반환
-      if (foodKorNames.error) {
-        throw new Error(foodKorNames.errorMessage);
+      if (nutrientsAvg.error) {
+        throw new Error(nutrientsAvg.errorMessage);
       }
       // 조회된 데이터가 있으면 결과와 함께 반환
-      res.status(200).json(foodKorNames);
+      res.status(200).json(nutrientsAvg);
     } catch (error) {
       next(error);
     }
   }
 );
-
-
-
 
 
 
@@ -183,7 +196,7 @@ const graphRouter = Router();
    errorMiddleware,
   async (req, res, next) => {
     try {
-      const foodList = await foodService.getFood();
+      const foodList = await chartService.getFood();
       
       // 조회된 데이터가 없으면 에러 반환
       if (foodList.error) {
