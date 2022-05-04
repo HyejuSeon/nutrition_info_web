@@ -9,15 +9,15 @@ function Register() {
   
   const navigate = useNavigate()
   const [loginId, setLoginId] = useState('###')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [name, setName] = useState('')
-  const [year, setYear] = useState('')
-  const [month, setMonth] = useState('')
-  const [day, setDay] = useState('')
-  const [birthday, setBirthday] = useState('')
-  const [sex, setSex] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [password, setPassword] = useState('###')
+  const [confirmPassword, setConfirmPassword] = useState('###')
+  const [name, setName] = useState('###')
+  const [year, setYear] = useState('###')
+  const [month, setMonth] = useState('###')
+  const [day, setDay] = useState('###')
+  const [birthday, setBirthday] = useState('###')
+  const [sex, setSex] = useState('###')
+  const [phoneNumber, setPhoneNumber] = useState('###')
   
   useEffect(() => {
       const birthdayInfo = String(year) + month + String(day) 
@@ -47,16 +47,26 @@ async function handleSubmit() {
     navigate("/login");
   } catch (err) {
     console.log("회원가입에 실패하였습니다.", err);
+    alert("아이디가 중복되었습니다. 새로운 아이디를 사용해주세요.")
+
   }
 };
 
+// ---- -------------- ----------//
+// --- default값, 즉 유저가 칸을 전혀 건드리지 않은 상태일 경우 체크 ----
+
+function defaultCheck(value) {
+  if(value === '###') {
+    return true
+  } else return false
+}
 
 
 //---- ----------------- ---------//
 // -- 칸이 공란일 경우 체크 ---
 
-  function blankCheck(id) {
-    if(id.length === 0) {
+  function blankCheck(value) {
+    if(value.length === 0) {
       return true
     } else return false
   }
@@ -68,6 +78,8 @@ async function handleSubmit() {
     const idRegex = /^[-_a-z0-9]{6,20}$/g;
     return loginId.match(idRegex) } 
   
+
+  const idDefaultValid = defaultCheck(loginId)
   const idBlankValid = blankCheck(loginId)
   const isIdValid = idCheck(loginId)
   
@@ -82,18 +94,20 @@ async function handleSubmit() {
     return password.match(passwordRegex)
   }
   
+  const passwordDefaultValid = defaultCheck(password)
   const passwordBlankValid = blankCheck(password)
   const isPasswordValid = passwordCheck(password)
 
   function confirmPasswordCheck(confirmPassword) {
     if(password === confirmPassword) {
-      return '비밀번호 확인이 완료되었습니다.'
+      return true
     }
       else {
-        return '비밀번호가 일치하지 않습니다.'
+        return false
       }
   }
 
+  const confirmPasswordDefaultValid = defaultCheck(confirmPassword)
   const isconfirmPasswordValid = confirmPasswordCheck(confirmPassword)
 
 // -------------------------------------------------//
@@ -106,6 +120,7 @@ async function handleSubmit() {
     return name.match(nameRegex)
   }
 
+  const nameDefaultValid = defaultCheck(name)
   const nameBlankValid = blankCheck(name)
   const isNameValid = nameCheck(name)
 
@@ -116,13 +131,13 @@ async function handleSubmit() {
 
   function birthdayCheck(year, month, day){
 
-    if (year.length !== 4) {
+    if (year.length !== 4 || year === '###') {
     return '태어난 년도 4자리를 정확하게 입력하세요.'
    } 
-    else if (month.length === 0) {
+    else if (month.length === 0 || month === '###') {
     return '태어난 월을 선택하세요'
     } 
-    else if (day.length !== 2) {
+    else if (day.length !== 2 || day === '###') {
     return '태어난 일(날짜) 2자리를 정확하게 입력하세요.'
     }
     else if ( year % 1 !== 0 || year < 1920 || year > 2022 || day % 1 !== 0 || day < 1 || day > 31 ) {
@@ -133,6 +148,8 @@ async function handleSubmit() {
     }
   }
   
+  
+  const birthdayDefaultValid = (defaultCheck(year)&&defaultCheck(year)&&defaultCheck(year))
   const isBirthdayValid = birthdayCheck(year, month, day)
 
 
@@ -145,7 +162,7 @@ async function handleSubmit() {
       return true
     }
   }
-
+    const sexDefaultValid = defaultCheck(sex)
     const isSexValid = sexCheck(sex)
   
   // --------------------------------------------------------------//
@@ -158,7 +175,15 @@ async function handleSubmit() {
     }
   }
 
+  const phoneNumberDefaultValid = defaultCheck(phoneNumber)
   const isPhoneNumberValid = phoneNumberCheck(phoneNumber)
+
+
+// ------------------------ 각각의 요건들이 모두 충족되어 회원가입 버튼이 작동되게 할지 검사 --------------------------///
+
+const registerationValid = (isIdValid&&isPasswordValid&&isconfirmPasswordValid&&isNameValid&&isBirthdayValid&&isSexValid&&isPhoneNumberValid)
+
+
 
 /// -------------------------------------------------------------------//
 // ----------------- 여기부터 컴퍼넌트 ------------------//
@@ -172,45 +197,47 @@ async function handleSubmit() {
       <div className="idContainer">
         <div className="idTitle">아이디</div>
         <input className='idBox' type='text' onBlur={(e) => setLoginId(e.target.value)} />
-        <div className='checker'>{idBlankValid ? '필수 정보입니다.' : isIdValid ? '멋진 아이디네요!' : '6~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용해주세요.'}</div>
+        <div className='checker'>{idDefaultValid ? '' : idBlankValid ? '필수 정보입니다.' : isIdValid ? <span>멋진 아이디네요!</span> : '6~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용해주세요.'}</div>
       </div>
 
       <div className="passwordContainer">
         <div className="passowrdTitle">비밀번호</div>
         <input className='passwordBox' type='password' onBlur={(e)=> setPassword(e.target.value)} />
-        <div className='checker'>{passwordBlankValid ? '필수 정보입니다' : isPasswordValid ? '멋진 비밀번호네요!' : '8~20자로 영문과 숫자를 조합해주세요.'}</div>
+        <div className='checker'>{passwordDefaultValid ? '' : passwordBlankValid ? '필수 정보입니다' : isPasswordValid ? <span>훌륭한 비밀번호입니다!</span> : '8~20자로 영문과 숫자를 조합해주세요.'}</div>
         
         <div className='confirmTitle'>비밀번호 재확인</div>
         <input className="confirmBox" type='password' onInput={(e)=>setConfirmPassword(e.target.value)} onBlur={confirmPasswordCheck} />
-        <div className="checker">{isconfirmPasswordValid}</div>
+        <div className="checker">{confirmPasswordDefaultValid ? '' : isconfirmPasswordValid ? <span>비밀번호 확인이 완료되었습니다.</span> : '입력한 비밀번호를 다시 확인해주세요.'}</div>
       </div>
 
       <div className="nameContainer">
         <div className="nameTitle">이름</div>
         <input className='nameBox' type='name' maxLength={30} onBlur={(e) => setName(e.target.value)}></input>
-        <div className='checker'>{nameBlankValid ? '필수 정보입니다.' : !isNameValid && '한글과 영문 대 소문자를 사용하세요'}</div>
+        <div className='checker'>{nameDefaultValid ? '' : nameBlankValid ? '필수 정보입니다.' : !isNameValid && '한글과 영문 대 소문자를 사용하세요'}</div>
       </div>
 
       <div className="birthContainer">
         <div className="birthTitle">생년월일</div>
-        <input className='yearBox' type='number' onBlur={(e) => setYear(e.target.value)}></input>
-        <select className='monthBox' aria-label='월' onBlur={(e) => setMonth(e.target.value)}>
-          <option value='' selected>달</option>
-          <option value='01'>1</option>
-          <option value='02'>2</option>
-          <option value='03'>3</option>
-          <option value='04'>4</option>
-          <option value='05'>5</option>
-          <option value='06'>6</option>
-          <option value='07'>7</option>
-          <option value='08'>8</option>
-          <option value='09'>9</option>
-          <option value='10'>10</option>
-          <option value='11'>11</option>
-          <option value='12'>12</option>
-        </select>
-        <input className='dayBox' type='number' onBlur={(e) => setDay(e.target.value)}></input>
-        <div className='checker'>{isBirthdayValid}</div>
+        <div className="birthBoxContainer">
+          <input className='yearBox' type='number' onBlur={(e) => setYear(e.target.value)}></input>
+          <select className='monthBox' aria-label='월' onBlur={(e) => setMonth(e.target.value)}>
+            <option value='' selected>달</option>
+            <option value='01'>1</option>
+            <option value='02'>2</option>
+            <option value='03'>3</option>
+            <option value='04'>4</option>
+            <option value='05'>5</option>
+            <option value='06'>6</option>
+            <option value='07'>7</option>
+            <option value='08'>8</option>
+            <option value='09'>9</option>
+            <option value='10'>10</option>
+            <option value='11'>11</option>
+            <option value='12'>12</option>
+          </select>
+          <input className='dayBox' type='number' onBlur={(e) => setDay(e.target.value)}></input>
+        </div>
+        <div className='checker'>{birthdayDefaultValid ? '' : isBirthdayValid}</div>
       </div>
 
       <div className="sexContainer">
@@ -221,18 +248,18 @@ async function handleSubmit() {
           <option value='F'>여자</option>
           <option value='U'>선택 안함</option>
         </select>
-        <div className='checker'>{!isSexValid && '성별을 입력해주세요.'}</div>
+        <div className='checker'>{sexDefaultValid ? '' : !isSexValid && '성별을 입력해주세요.'}</div>
       </div>
 
       <div className="phoneNumberContainer">
         <div className="phoneNumberTitle">휴대전화</div>
         <input className='phoneNumberBox' type='number'onBlur={(e) => setPhoneNumber(e.target.value)}></input>
-        <div className='phoneNumberChecker'>{!isPhoneNumberValid && '휴대폰 번호를 다시 확인해주세요' }</div>
+        <div className='phoneNumberChecker'>{phoneNumberDefaultValid ? '' : !isPhoneNumberValid && '휴대폰 번호를 다시 확인해주세요' }</div>
       </div>
 
       <button className="registerButton" 
         onClick={handleSubmit}
-      disabled={!(isIdValid&&isPasswordValid&&isconfirmPasswordValid&&isNameValid&&isBirthdayValid&&isSexValid&&isPhoneNumberValid)}>가입하기</button>
+      disabled={!registerationValid}>가입하기</button>
     </div>
 
 

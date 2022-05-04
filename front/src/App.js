@@ -10,6 +10,8 @@ import Main from './components/main/Main'
 import Login from './components/login/Login'
 import Register from "./components/register/Register";
 import Blog from './components/blog/Blog';
+import BlogPost from './components/blog/BlogPost'
+
 
 export const UserStateContext = createContext(null);
 export const dispatchContext = createContext(null);
@@ -61,6 +63,7 @@ function App() {
             <Routes>
               <Route path="/main" exact element={<Main />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blogPost" element={<BlogPost />} />
               <Route path="/graph" element={<GraphPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />

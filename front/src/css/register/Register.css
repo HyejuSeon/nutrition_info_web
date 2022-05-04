@@ -142,9 +142,16 @@ input::-webkit-inner-spin-button {
   margin-bottom: 5px;
 }
 
+.birthBoxContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
 .yearBox {
   width: 32%;
-  height: 32px;
+  height: 29px;
   margin-right: 2%;
   border:0.2mm;
   border-style: solid;
@@ -157,7 +164,7 @@ input::-webkit-inner-spin-button {
 
 .monthBox {
   width: 32%;
-  height: 32px;
+  height: 32.5px;
   margin-right: 2%;
   border:0.2mm;
   border-style: solid;
@@ -170,7 +177,7 @@ input::-webkit-inner-spin-button {
 
 .dayBox {
   width: 32%;
-  height: 32px;
+  height: 29px;
   border:0.2mm;
   border-style: solid;
   border-color: gainsboro;
@@ -244,5 +251,21 @@ input::-webkit-inner-spin-button {
   background-color: #19C764;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 13px;
-  color:white
+  color:white;
+}
+
+.registerButton:hover {
+  cursor: pointer;
+}
+
+.registerButton:disabled {
+  cursor: not-allowed;
+}
+
+
+
+/* 올바른 id와 비밀번호를 입력했을시 */
+
+span {
+  color: #16A628;
 }

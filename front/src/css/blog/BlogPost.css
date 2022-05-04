@@ -1,0 +1,72 @@
+.QuillContainer {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.QuillHeaderContainer {
+  width: 560px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+
+}
+
+.QuillTitle {
+  width: 300px;
+  border: none;
+  outline-style: hidden;
+  
+  
+}
+
+.rowSpace {
+  width: 150px;
+
+
+}
+
+.summitTextButton {
+  background-color: #19C764;
+  color: white;
+  font-weight: 500;
+  border-style: none;
+  border-radius: 1mm;
+  width: 80px;
+  height: 28px;
+  box-shadow: 2px;
+  cursor: pointer;
+
+}
+
+.summitTextButton:disabled {
+  cursor: not-allowed;
+}
+
+.postingSumnailHeader {
+  background-color: white;
+  width: 560px;
+  height: 25px;
+
+}
+
+.postingSumanil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(252, 252, 252) ;
+  width: 560px;
+  height: 160px;
+
+
+}
+
+.postingSumanil button {
+
+width: 180px;
+height: 30px;
+
+}

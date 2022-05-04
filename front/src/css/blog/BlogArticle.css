@@ -1,0 +1,78 @@
+* {
+
+  font-size: 7px;
+
+}
+
+
+.articleContainer {
+  width: 480px;
+  height: 640px;
+  background-color: white;
+  margin: auto;
+  border: solid;
+}
+
+.aritcleTitleBox {
+  width: 100%;
+  height: 5%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-bottom: solid;
+
+}
+
+.title {
+  width: 60%;
+  height: 100%;
+  background-color: blueviolet;
+}
+
+.date {
+  width: 20%;
+  height: 100%;
+  background-color: aquamarine;
+}
+
+.author {
+  width: 20%;
+  height: 100%;
+  background-color: brown;
+}
+
+
+
+.articleImageBox {
+  width: 100%;
+  height: 25%;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid;
+}
+
+
+.articleImage {
+  width: 50%;
+  height: 90%;
+  background-color: white;
+}
+
+.articleContent {
+  width: 100%;
+  height: 62%;
+  background-color: bisque;
+  border-bottom: solid;
+}
+
+.recommand {
+  width: 100%;
+  height: 7.5%;
+  background-color: chocolate;
+}
+
+
