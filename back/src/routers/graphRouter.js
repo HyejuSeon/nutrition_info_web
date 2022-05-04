@@ -174,9 +174,6 @@ const graphRouter = Router();
 
 
 
-
-
-
 // ------- 그래프 ID로 이미지 파일 조회 -------
 /**
  * @swagger
