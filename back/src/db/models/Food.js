@@ -18,8 +18,12 @@ class Food {
   }
 
   // 영양성분 전체 조회
-  static async findNutrientNames() {  // cf. Graph Model에 영양성분 값만 따로 저장해둠
-    const nutrientsNamesList = await GraphModel.findOne({},{'_id': 0, 'nutrients':1});
+  static async findNutrientNames() {
+    // cf. Graph Model에 영양성분 값만 따로 저장해둠
+    const nutrientsNamesList = await GraphModel.findOne(
+      {},
+      { _id: 0, nutrients: 1 }
+    );
     return nutrientsNamesList;
   }
 
@@ -59,6 +63,16 @@ class Food {
       { _id: 0, foodId: 0, category: 0, measure: 0 }
     );
     return nutrientsFood;
+  }
+
+  // 카테고리 음식의 영양성분 순위
+  static async findFoodsRank({ currentCategory, currentNutrient }) {
+    const fieldProjection = {_id: 0, foodName: 1, foodKorName: 1, grams: 1, [currentNutrient]: 1};
+    const foodRank = await FoodModel.find(
+      { category: currentCategory },
+      fieldProjection
+    ).sort({ [currentNutrient]: -1 });
+    return foodRank;
   }
 
   // 데이터 전체 조회

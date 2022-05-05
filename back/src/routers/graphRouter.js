@@ -206,6 +206,52 @@ const graphRouter = Router();
 );
 
 
+// 막대차트 -- 특정 카테고리 음식들의 특정 영양성분 순위
+/**
+ * @swagger
+ * /food-rank?category=desserts&nutrients=fat:
+ *   get:
+ *     summary: 막대차트 - 특정 카테고리 음식들의 특정 영양성분 순위 조회
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 카테고리에 속한 음식들의 유저가 선택한 영양성분 순서를 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
+ *       - name: nutrients
+ *         in: query
+ *         required: true
+ *         description: 영양성분명(소문자로 작성)
+ *     responses:
+ *       200:
+ *         description: success
+ */
+ graphRouter.get(
+  "/food-rank",
+   errorMiddleware,
+  async (req, res, next) => {
+    try {
+      const currentCategoryOriginal = req.query.category;
+      const currentNutrient = req.query.nutrients;
+      const foodsRank = await graphService.getFoodsRank({ currentCategoryOriginal, currentNutrient });
+      
+      // 조회된 데이터가 없으면 에러 반환
+      if (foodsRank.error) {
+        throw new Error(foodsRank.errorMessage);
+      }
+      // 조회된 데이터가 있으면 결과와 함께 반환
+      res.status(200).json(foodsRank);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 
 // ------- 그래프 ID로 이미지 파일 조회 -------
