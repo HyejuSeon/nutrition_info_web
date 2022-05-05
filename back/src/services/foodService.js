@@ -29,6 +29,18 @@ class foodService {
         return foodNamesList
     }
 
+    // 영양성분 이름 목록 전체
+    static async getNutrients() {
+        const nutrientsList = await Food.findNutrientNames();
+        if (!nutrientsList) {
+                const errorMessage =
+                "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
+                return { errorMessage };
+            }
+            nutrientsList.errorMessage = null;
+        return nutrientsList
+    }
+
 
     // TEST: 데이터세트 전체
     static async getFood() {

@@ -83,6 +83,40 @@ const graphRouter = Router();
   }
 );
 
+// 영양성분 리스트 조회
+/**
+ * @swagger
+ * /food/nutrients:
+ *   get:
+ *     summary: 영양성분 리스트 조회
+ *     tags:
+ *     - Food
+ *     description: 칼로리, 단백질, 지방, 포화지방, 섬유질, 탄수화물
+ *     produces:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: success
+ */
+ graphRouter.get(
+  "/food/nutrients",
+   errorMiddleware,
+  async (req, res, next) => {
+    try {
+      const nutrientsNames = await foodService.getNutrients();
+      
+      // 조회된 데이터가 없으면 에러 반환
+      if (nutrientsNames.error) {
+        throw new Error(nutrientsNames.errorMessage);
+      }
+      // 조회된 데이터가 있으면 결과와 함께 반환
+      res.status(200).json(nutrientsNames.nutrients);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 
 
 // ------------------- 시각화 -------------------
