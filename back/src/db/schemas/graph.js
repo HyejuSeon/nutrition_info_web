@@ -14,6 +14,10 @@ const GraphSchema = new Schema (
             type: String,
             required: true,
         },
+        nutrients: {
+            type: Array,
+            default: ['calories','protein','fat','satFat','fiber','carbs'],
+        }
     }
 );
 

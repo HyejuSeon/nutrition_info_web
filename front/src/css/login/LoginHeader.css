@@ -11,11 +11,11 @@
 }
 
 .headerTitle {
-  width: 160px;
+  width: 10rem;
   background-color: white;
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 42px;
+  font-size: 2.625rem;
   font-weight: bolder;
   color: #19C764;
   

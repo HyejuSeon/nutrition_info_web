@@ -9,18 +9,20 @@
 }
 
 .bottomContents {
-  width: 240px;
-  height: 16px;
+  width: 15rem;
+  height: 1rem;
   text-align: center;
   line-height: 60%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .searchPassword {
   text-decoration: none;
   color: #888897;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 8px;
-  margin-right: 16px;
+  font-size: 0.5rem;
+  
   
 }
 
@@ -28,8 +30,8 @@
   text-decoration: none;
   color: #888897;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 8px;
-  margin-right: 16px;
+  font-size: 0.5rem;
+  
   
 }
 
@@ -37,6 +39,6 @@
   text-decoration: none;
   color: #888897;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 8px;
+  font-size: 0.5rem;
   
 }

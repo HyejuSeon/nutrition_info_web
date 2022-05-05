@@ -44,6 +44,19 @@ class Article {
       const isDataDeleted = deleteResult.deletedCount === 1;
       return isDataDeleted;
     }
+
+    static async addFileById({ articleId, filePath }) {
+      const filter = { id : articleId };
+      const update = { filePath : filePath };
+      const option = { new: true };
+
+      const addFileArticle = await ArticleModel.findOneAndUpdate(
+        filter,
+        update,
+        option
+      );
+      return addFileArticle;
+    }
 }
   
 export { Article };
