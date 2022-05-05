@@ -1,32 +1,89 @@
-import React, {useState, uesEffect}  from 'react'
-import {useNavigatge} from 'react-router-dom'
+import React, {useState, uesEffect, useEffect}  from 'react'
+import {useNavigatge, useParams} from 'react-router-dom'
 import '../../css/blog/BlogArticle.css'
-
+import * as Api from '../../api'
 
 function BlogArticle() {
+
+
+// 기사의 고유 id값이 param으로 되어있고 이걸 가져온다.
+
+
+  const params = useParams()
+  const id = params.id
+
+
+// Params에서 아티클의 고유정보를 받아옴 
+
+  useEffect(() => {
+      
+      async function getArticleInfo(){
+      const res = await Api.get(`article/${id}`)
+      console.log(res.data)
+      setArticleInfo(res.data)
+      setUpdatedTime(res.data.updatedAt.split('T')[0])
+      }; 
+      getArticleInfo();
+    }, [id])
+  
+  const [articleInfo, setArticleInfo] = useState('')
+  const [updatedTime, setUpdatedTime] = useState('')
+
+
+// 좋아요, 싫어요 기능 관련 함수. 백으로 좋아요와 싫어요 숫자가 늘어난 정보 Put요청으로 보낸다.
+
+  const [recomendNumber, setRecomendNumber] = useState(0)
+  const [decomendNumber, setDecomendNumver] = useState(0)
+  const [isButtonClicked, setIsButtonClicked] = useState(false)
+
+  const recommendButton = () => {
+    setRecomendNumber((state) => state+1)
+    setIsButtonClicked(true)
+  }
+
+  const decommendButton = () => {
+    setDecomendNumver((state) => state+1)
+    setIsButtonClicked(true)
+  }
+
+ 
+ // 밑에는 백으로 좋아요 관련 put요청 보내는건데 일단 보류 
+ 
+  // useEffect(() =>{
+    
+  //   const userComment = async() => {
+      
+  //     const res = await Api.put(`article/${id}` , {
+
+  //     })
+    
+  //   }
+  
+  
+  // }, [])
+
+
+// -------------------------------------------------------- 컴포넌트  -----------------------------------------------------//
 
   return (
     
     <div className="articleWrapper">
       <div className="articleContainer">
         <div className="aritcleTitleBox">
-          <div className="title">글 입력창에 받은 제목</div>
-          <div className="date">백엔드에서 계산된 글 작성 시간</div>
-          <div className="author">글 입력창에서 입력한 닉네임</div>
+          <div className="articleTitle">제목: {articleInfo.title}</div>
+          <div className="articleDate">작성일: {updatedTime}</div>
+          <div className="articleAuthor">글쓴이: {articleInfo.nickName}</div>
         </div>
         <div className="articleImageBox">
-        <div className="articleImage">이미지 경로를 URL로 넣습니다.</div> 
+        <div className="articleImage">
+          <img src={articleInfo.filePath} alt="사진" style={{width: '100%', height: '100%'}} />
+          </div> 
         </div>
-        <div className="articleContent">
-          여깄다가 Quill에서 작성한 HTML 태그를 통째로 넣을 생각입니다.
-          혹시 안된다면 텍스트만 넣도록 수정해야 할것 같습니다.
-          <p>예시용 p태그입니다. 이걸 바로 적용되게 해야할것 같은데요. 줄바꿈이 되는지부터 확인해봅시다. 줄바꿈이 되나요?
-            잘 되네요. div태그안에 받아온 p태그를 전부 넣을 수 있으면 적용하는데 문제는 없을것 같습니다.
-          </p>
+        <div className="articleContent" dangerouslySetInnerHTML={{ __html: articleInfo.content }}>  
         </div>
-        <div className="recommand">
-          여깄다가 좋아요 버튼을 넣고 누를시 좋아요가 한번 늘어나고
-          한번 누르면 버튼을 정지시킬 생각입니다. 
+        <div className="articleRecommand">
+          <button onClick={recommendButton} disabled={isButtonClicked}>개념</button>
+          <button onClick={decommendButton} disabled={isButtonClicked}>비추</button>
         </div>
       </div>
     </div>

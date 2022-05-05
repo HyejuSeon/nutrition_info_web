@@ -33,7 +33,7 @@ function BlogHeader() {
           <div className='naviContent'>
             {!isLogin && <button onClick={() => navigate('/register')}>회원가입</button>}
             {!isLogin && <button onClick={() => navigate('/login')}>로그인</button>} 
-            {isLogin && <button>마이페이지</button>}
+            {isLogin && <button onClick={() => navigate('/BlogPost')}>글작성</button>}
             {isLogin && <button onClick={logout}>로그아웃</button>}
             <button onClick={() => navigate('/graph')}>그래프</button> 
             <button onClick={() => navigate('/main')}>메인화면</button>

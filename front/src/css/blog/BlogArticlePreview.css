@@ -1,0 +1,32 @@
+
+.PreviewContainer {
+
+  width: 270px;
+  height: 210px;
+  border: solid;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.PreviewimageBox {
+
+  width: 270px;
+  height: 180px;
+  border-bottom: solid;
+  margin-bottom: 0;
+}
+
+.PreviewimageBox img {
+
+  width: 100%;
+  height: 100%;
+  
+}
+
+
+.titleBox {
+
+  width: 270px;
+  height: 30px;
+}

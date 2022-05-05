@@ -1,16 +1,25 @@
-* {
-
-  font-size: 7px;
-
+.articleWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FAFBFC;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 
+
 .articleContainer {
-  width: 480px;
-  height: 640px;
+  width: 800px;
+  height: 1160px;
   background-color: white;
-  margin: auto;
   border: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  border-radius: 3mm;
+  overflow: hidden;
+  box-shadow: 0.3px 0.3px #E8EBEE;
 }
 
 .aritcleTitleBox {
@@ -21,58 +30,84 @@
   flex-direction: row;
   justify-content: space-evenly;
   border-bottom: solid;
-
+  border-color: #E8EBEE;
+  border-width: thin;
+  
 }
 
-.title {
-  width: 60%;
+.articleTitle {
+  width: 42%;
   height: 100%;
-  background-color: blueviolet;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 2.4;
+
 }
 
-.date {
-  width: 20%;
+.articleDate {
+  width: 26%;
   height: 100%;
-  background-color: aquamarine;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 3.2;
+  text-align: right;
+
 }
 
-.author {
-  width: 20%;
+.articleAuthor {
+  width: 26%;
   height: 100%;
-  background-color: brown;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 3.2;
+  text-align: right;
 }
-
 
 
 .articleImageBox {
   width: 100%;
   height: 25%;
-  background-color: red;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-bottom: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  
 }
 
 
 .articleImage {
   width: 50%;
   height: 90%;
+  border-radius: 1mm;
+  overflow: hidden;
   background-color: white;
 }
 
 .articleContent {
   width: 100%;
   height: 62%;
-  background-color: bisque;
   border-bottom: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  padding: 10px;
+  overflow: auto;
 }
 
-.recommand {
+.articleRecommand { 
   width: 100%;
-  height: 7.5%;
-  background-color: chocolate;
+  height: 5.7%;
+  text-align: center;
+}
+
+.articleRecommand button {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  margin: 10px;
+  
 }
 
 

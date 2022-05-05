@@ -1,13 +1,23 @@
-.QuillContainer {
+.QuillWrapper {
 
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   
 }
 
+.QuillContainer {
+
+  width: 800px;
+  height: 1160px; 
+
+}
+
 .QuillHeaderContainer {
-  width: 560px;
+  width: 100%;
+  height: 3.3%;
   margin-top: 20px;
   display: flex;
   flex-direction: row;
@@ -16,16 +26,18 @@
 }
 
 .QuillTitle {
-  width: 300px;
+  width: 53%;
   border: none;
   outline-style: hidden;
-  
+  margin-right: 1.8%;
   
 }
 
-.rowSpace {
-  width: 150px;
-
+.QuillNickname {
+  width: 30%;
+  margin-right: 2%;
+  border: none;
+  outline-style: hidden;
 
 }
 
@@ -35,8 +47,7 @@
   font-weight: 500;
   border-style: none;
   border-radius: 1mm;
-  width: 80px;
-  height: 28px;
+  width: 12%;
   box-shadow: 2px;
   cursor: pointer;
 
@@ -48,8 +59,11 @@
 
 .postingSumnailHeader {
   background-color: white;
-  width: 560px;
-  height: 25px;
+  color: #757575;
+  width: 100%;
+  height: 3%;
+  font-size: 20px;
+  font-weight: 500;
 
 }
 
@@ -58,8 +72,8 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(252, 252, 252) ;
-  width: 560px;
-  height: 160px;
+  width: 100%;
+  height: 20%;
 
 
 }

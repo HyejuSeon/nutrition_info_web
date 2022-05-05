@@ -2,7 +2,7 @@ import { Article } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class ArticleService {
-    static async addArticle({ userId, loginId, title, content }){
+    static async addArticle({ nickName, title, content, filePath }){
         const id = uuidv4();
         
         // id : article 고유 id
@@ -11,7 +11,7 @@ class ArticleService {
         // title : 게시글 제목
         // content : 게시글 내용
         
-        const newArticle = { id, userId, loginId, title, content };
+        const newArticle = { id, nickName, title, content, filePath };
         const createdNewArticle = await Article.create({ newArticle });
 
         return createdNewArticle
@@ -53,17 +53,32 @@ class ArticleService {
         return article;
       }
 
-      static async deleteArticle({ articleId }) {
-        const isDataDeleted = await Article.deleteById({ articleId });
-    
-        // db에서 찾지 못한 경우, 에러 메시지 반환
-        if (!isDataDeleted) {
-          const errorMessage =
-            "해당 id를 가진 게시글은 없습니다. 다시 한 번 확인해 주세요.";
-          return { errorMessage };
-        }
-    
-        return { status: "ok" };
+    static async deleteArticle({ articleId }) {
+      const isDataDeleted = await Article.deleteById({ articleId });
+  
+      // db에서 찾지 못한 경우, 에러 메시지 반환
+      if (!isDataDeleted) {
+        const errorMessage =
+          "해당 id를 가진 게시글은 없습니다. 다시 한 번 확인해 주세요.";
+        return { errorMessage };
       }
+  
+      return { status: "ok" };
+    }
+
+    static async addFileInfo({ articleId, filePath }) {
+      const article = await Article.findById({ articleId });
+
+      if (!article) {
+        const errorMessage = "해당 게시글은 등록 내역이 없습니다. 다시 한 번 확인해 주세요.";
+        return errorMessage;
+      }
+
+      const addArticleFile = await Article.addFileById({ articleId, filePath });
+      addArticleFile.errorMessage = null;
+
+      return addArticleFile;
+    }
+
 }
 export { ArticleService }
