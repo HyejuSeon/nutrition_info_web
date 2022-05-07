@@ -75,6 +75,15 @@ class Food {
     return foodRank;
   }
 
+  // 두 영양성분 비교
+  static async findByNutrients({ x, y }) {
+    const fieldProjection = {_id: 0, foodName: 1, foodKorName: 1, calories: 1, [x]: 1, [y]: 1};
+    const nturientsResult = await FoodModel.find({},
+      fieldProjection
+    );
+    return nturientsResult;
+  }
+
   // 데이터 전체 조회
   static async findAll() {
     const foodsList = await FoodModel.find({});

@@ -235,5 +235,50 @@ graphRouter.get("/food-rank", errorMiddleware, async (req, res, next) => {
   }
 });
 
+// 버블 차트 -- 두 개의 영양성분 함량을 x축과 y축으로 비교
+/**
+ * @swagger
+ * /nutrients-comparison?x=protein&y=carbs:
+ *   get:
+ *     summary: 버블 차트 (산포도) - 두 영양성분을 x축과 y축으로 비교
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 영양성분 2가지와 칼로리(고정 z축, 점 크기) 데이터 값 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: x
+ *         in: query
+ *         required: true
+ *         description: 영양성분명
+ *         schema:
+ *           type: string
+ *       - name: y
+ *         in: query
+ *         required: true
+ *         description: 영양성분명
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/nutrients-comparison", errorMiddleware, async (req, res, next) => {
+  try {
+    const { x, y } = req.query;
+    const nutrientsComparison = await graphService.getNutrientsComparison({ x, y });
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (nutrientsComparison.error) {
+      throw new Error(nutrientsComparison.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(nutrientsComparison);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
+
 
 export { graphRouter };

@@ -59,6 +59,19 @@ class graphService {
     return foodsList;
   }
 
+  // 버블 차트 -- 모든 음식들의 두 영양성분 상대적 비교
+  static async getNutrientsComparison({ x, y }) {
+
+    const nutrientskList = await Food.findByNutrients({ x, y });
+
+    if (!nutrientskList) {
+      const errorMessage = "데이터를 찾을 수 없습니다. 다시 확인해주세요.";
+      return { errorMessage };
+    }
+    nutrientskList.errorMessage = null;
+    return nutrientskList;
+  }
+
   // 그래프 static 이미지
   static async getGraph({ graphId }) {
     // 그래프 ID 로 조회
