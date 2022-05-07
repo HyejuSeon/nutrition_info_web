@@ -59,6 +59,21 @@ async function del(endpoint, params = "") {
   });
 }
 
+
+// 사진 데이터 전송 관련 header를 form data형태로 변경하여 요청. 
+
+async function imagePost(endpoint, data) {
+  
+  console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
+  console.log(`%cPOST 요청 데이터: ${data}`, "color: #296aba;");
+  
+  return axios.post(serverUrl + endpoint, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+}
+
 // 아래처럼 export한 후, import * as A 방식으로 가져오면,
 // A.get, A.post 로 쓸 수 있음.
-export { get, post, put, del as delete };
+export { get, post, put, imagePost, del as delete };

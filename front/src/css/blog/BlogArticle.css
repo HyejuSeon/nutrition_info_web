@@ -1,0 +1,120 @@
+.articleWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FAFBFC;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.articleContainer {
+  width: 50rem;
+  height: 72.5rem;  background-color: white;
+  border: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  border-radius: 3mm;
+  overflow: hidden;
+  box-shadow: 0.01875rem 0.01875rem #E8EBEE;
+}
+
+.aritcleTitleBox {
+  width: 100%;
+  height: 5%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-bottom: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  overflow: hidden;
+  
+}
+
+.articleTitle {
+  width: 42%;
+  height: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.4;
+  overflow: hidden;
+
+}
+
+.articleDate {
+  width: 26%;
+  height: 100%;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 3.2;
+  text-align: right;
+  overflow: hidden;
+}
+
+.articleAuthor {
+  width: 26%;
+  height: 100%;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 3.2;
+  text-align: right;
+  overflow: hidden;
+}
+
+
+.articleImageBox {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  
+}
+
+
+.articleImage {
+  width: 50%;
+  height: 90%;
+  border-radius: 1mm;
+  overflow: hidden;
+  background-color: white;
+  object-fit: cover;
+}
+
+.articleContent {
+  width: 100%;
+  height: 62%;
+  border-bottom: solid;
+  border-color: #E8EBEE;
+  border-width: thin;
+  padding: 0.625rem;
+  overflow: auto;
+
+}
+
+.articleRecommand { 
+  width: 100%;
+  height: 6%;
+  padding: 0;
+  text-align: center;
+}
+
+.blogNavigaion {
+  width: 100%;
+  height: 100%;
+  background-color: #19C764;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+  border: hidden;
+  margin: 0;
+  cursor: pointer;
+}
+
+

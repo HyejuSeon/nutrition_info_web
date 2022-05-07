@@ -1,0 +1,79 @@
+
+.PreviewContainer {
+
+  width: 16.875rem;
+  height: 13.125rem;
+  border: solid;
+  border-width: thin;
+  border-radius: 0.625rem;
+  border-color: gray;
+  box-shadow: 0.1px 0.1px black;
+  overflow: hidden;
+  margin: 0.625rem;
+  cursor: pointer;
+}
+
+.PreviewimageBox {
+
+  width: 16.875rem;
+  height: 11.25rem;
+  border-bottom: solid;
+  border-width: thin;
+  margin-bottom: 0; 
+}
+
+.PreviewimageBox img {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  
+}
+
+
+.previewArticleInfoBox {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+  width: 16.875rem;
+  height: 2rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  user-select: none;  
+}
+
+
+.previewArticleTitle0 {
+  width: 100%;
+  height: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.25rem;
+  overflow: hidden;
+  margin-right: 0.4rem;
+  text-align: center;
+}
+
+.previewArticleTitle {
+  width: 90%;
+  height: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.25rem;
+  overflow: hidden;
+  margin-right: 0.4rem;
+  text-align: center;
+}
+
+.previewArticleVisited {
+  width: 9%;
+  height: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1rem;
+  overflow: hidden;
+  margin-right: 0.4rem;
+  color: red
+}

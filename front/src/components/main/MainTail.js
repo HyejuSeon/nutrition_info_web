@@ -1,6 +1,5 @@
 import React from "react";
 import '../../css/main/MainTail.css'
-import { useNavigate, useParams } from "react-router-dom";
 import foodCommunity from '../../images/main/MainTail/foodComunity.jpg'
 
 function MainBottom() {

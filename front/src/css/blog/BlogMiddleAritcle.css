@@ -1,182 +1,37 @@
+.mainTitle {
+  margin: 0;
+  background-color: #F2F2F2;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
 
 .blogMiddleArticleContainer {
 
   width: auto;
-  height: 880px;
+  height: 48%;
   background-color: #F2F2F2;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .blogMiddleAritcleBox {
 
-  width: 40%;
-  height: 90%;
+  width: 60%;
+  height: 80%;
+  min-width: 56.5rem;
+  min-height: 30rem;
   background-color: #F2F2F2;
-  padding: 10px;
-
-}
-
-.articleBoxTitle {
-
-  height: 8%;
-  font-size: 30px;
-  margin-left: 3%;
-}
-
-.articleColumn1 {
-
-  width: 100%;
-  height: 27%;
-  background-color: #F2F2F2;
-  margin-bottom: 20px;
+  padding: 0.625rem;
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
-
-}
-
-.article1 {
-
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
- 
+  flex-wrap: wrap;
   
-
 }
 
-.article2 {
-  
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  
-  
-
-
-}
-
-.articleColumn2 {
-
-  width: 100%;
-  height: 27%;
-  background-color: #F2F2F2;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-evenly;
-
-
-}
-
-.article3 {
-
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  
-  
-
-
-}
-
-.article4 {
-
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  
-  
-
-}
-
-.articleColumn3 {
-
-  width: 100%;
-  height: 27%;
-  background-color: #F2F2F2;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-evenly;
-
-}
-
-.article5 {
-
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  
- 
-
-
-}
-
-.article6 {
-
-  width: 45%;
-  height: 100%;
-  box-sizing: border-box;
-  border:1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  
-  
-
-}
-
-.articleImage {
-
-  width: 100%;
-  height: 72%;
-  display: block;
-  
-
-}
-
-img {
-
-  width: 100%;
-  height: 100%;
-
-}
-
-.articleTitle {
-
-  background-color: white;
-  width: 100%;
-  height: 28%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 8px;
-  padding-right: 8px;
-  color:#43413F;
-  font-size: 11.5px;
-  font-weight: bold;
-}
-
-.articleTitleDate {
-
-  color: #9A9A9A;
-  font-weight: lighter;
-  font-size: 2px;
-
-
-}
 
 

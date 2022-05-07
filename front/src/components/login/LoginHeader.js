@@ -1,11 +1,13 @@
 import React from 'react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import '../../css/login/LoginHeader.css'
 
 function LoginHeader() {
+  const navigate = useNavigate()  
+
   return (
-    <div className='headerContainer'>
-      <div className='headerTitle'>Foodlog</div>
+    <div className='loginHeaderContainer'>
+      <div className='loginHeaderTitle' onClick={() => navigate('/blog')}>Foodlog</div>
     </div>
   )
 }

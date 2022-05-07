@@ -1,32 +1,30 @@
-.wrapper {
+.mainWrapper {
   width: 100vw;
   height: 100vh;
 }
 
 .mainHeaderContainer {
   width: 100%;
-  height: 500px;
+  height: 31.25rem;
   background-color: white;
-
+  padding-top: 1rem;
 }
 
 .mainMiddleContainer {
   width: 100%;
-  height: 500px;
+  height: 31.25rem;
   background-color: #FFF5EC;
-
 }
 
 .mainTailContainer {
   width: 100%;
-  height: 500px;
+  height: 31.25rem;
   background-color: white;
-
 }
 
 
 .mainContainer {
-  width: 1000px;
-  height: 1500px;
+  width: 62.5rem;
+  height: 93.75rem;
   margin: auto;
 }

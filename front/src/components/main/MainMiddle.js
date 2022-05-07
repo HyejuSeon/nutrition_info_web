@@ -1,7 +1,6 @@
 import React from "react";
 import '../../css/main/MainMiddle.css' 
 import FoodImg from '../../images/main/MainMiddle/foodImg.jpg'
-import { useNavigate, useParams } from "react-router-dom";
 
 
 function MainMiddle () {

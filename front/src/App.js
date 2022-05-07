@@ -10,13 +10,16 @@ import Main from './components/main/Main'
 import Login from './components/login/Login'
 import Register from "./components/register/Register";
 import Blog from './components/blog/Blog';
+import BlogPost from './components/blog/BlogPost'
+import BlogArticle from './components/blog/BlogArticle';
+import Team from './components/team/Team'
 
 export const UserStateContext = createContext(null);
 export const dispatchContext = createContext(null);
 
-
 function App() {
-    // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
+    
+  // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
     const [userState, dispatch] = useReducer(loginReducer, {
       user: null,
     });
@@ -61,10 +64,14 @@ function App() {
             <Routes>
               <Route path="/main" exact element={<Main />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blogPost" element={<BlogPost />} />
               <Route path="/graph" element={<GraphPage />} />
+              <Route path="/blogArticle/:id" element={<BlogArticle/>} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/team" element={<Team />} />
               <Route path="*" element={<Main />} />
+            
             </Routes>
           </Router>
        </UserStateContext.Provider>
@@ -73,3 +80,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,90 +1,287 @@
 import { Router } from "express";
 import { graphService } from "../services/graphService";
+import { foodService } from "../services/foodService";
 import { errorMiddleware } from "../middlewares/errorMiddleware";
 
 const graphRouter = Router();
 
+// ------------------- 사이드바 -------------------
 
-// ------- 그래프 ID로 이미지 파일 조회 -------
-
+// 음식 카테고리 리스트 조회
 /**
  * @swagger
- * /graph/{graphId}:
+ * /food/category:
  *   get:
- *     summary: 그래프 ID 로 이미지 파일 조회
+ *     summary: 음식 카테고리 리스트 조회
  *     tags:
- *     - Graph
- *     description: 그래프 이미지 파일 URL 경로를 반환
+ *     - Food
+ *     description: 유저가 선택할 음식 카테고리 전체 목록이 반환
  *     produces:
  *     - application/json
- *     parameters:
- *       - name: graphId
- *         in: path
- *         required: true
- *         description: 현재 데이터는 id 1 또는 2만 검색 가능 (그 외는 에러 출력)
- *         schema:
- *           type: integer
  *     responses:
  *       200:
  *         description: success
  */
-graphRouter.get('/graph/:graphId', 
-  errorMiddleware,
-  async (req, res, next) => {
-    try {
+graphRouter.get("/food/category", errorMiddleware, async (req, res, next) => {
+  try {
+    const categories = await foodService.getCategories();
 
-      // 프론트엔드에서 요청한 graphId와 동일한 데이터 조회
-      const graphId = req.params.graphId;
-      const currentGraph = await graphService.getGraph({ graphId });
-
-      // 조회된 데이터가 없으면 에러 반환
-      if (currentGraph.error) {
-        throw new Error(currentGraph.errorMessage);
-      }
-      
-      // 조회된 데이터가 있으면 결과와 함께 반환
-      res.status(200).json(currentGraph);
+    // 조회된 데이터가 없으면 에러 반환
+    if (categories.error) {
+      throw new Error(categories.errorMessage);
     }
-    catch(error) {
-      next(error);
-    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(categories);
+  } catch (error) {
+    next(error);
+  }
 });
 
-
-// ------- 음식 영양성분 데이터 전체 조회 -------
-
+// 음식 이름 리스트 조회
 /**
  * @swagger
- * /food:
+ * /food/foodname?category=desserts:
  *   get:
- *     summary: 데이터 전체 조회
+ *     summary: 카테고리 하위 음식 이름 리스트 조회
  *     tags:
  *     - Food
- *     description: 그래프에 사용될 음식 영양성분 데이터 전체를 반환
+ *     description: 유저가 선택한 카테고리에 속한 음식이름(영&한) 전체 목록이 반환
  *     produces:
  *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/food/foodname", errorMiddleware, async (req, res, next) => {
+  try {
+    const currentCategoryOriginal = req.query.category;
+    const foodNames = await foodService.getFoodNames({
+      currentCategoryOriginal,
+    });
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (foodNames.error) {
+      throw new Error(foodNames.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(foodNames);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 영양성분 리스트 조회
+/**
+ * @swagger
+ * /food/nutrients:
+ *   get:
+ *     summary: 영양성분 리스트 조회
+ *     tags:
+ *     - Food
+ *     description: 칼로리, 단백질, 지방, 포화지방, 섬유질, 탄수화물
+ *     produces:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/food/nutrients", errorMiddleware, async (req, res, next) => {
+  try {
+    const nutrientsNames = await foodService.getNutrients();
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (nutrientsNames.error) {
+      throw new Error(nutrientsNames.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(nutrientsNames.nutrients);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// ------------------- 시각화 -------------------
+
+// 도넛차트 -- 특정 카테고리의 영양성분 평균 구성 시각화
+/**
+ * @swagger
+ * /nutrients-avg?category=desserts:
+ *   get:
+ *     summary: 도넛차트 - 해당 카테고리의 평균 영양성분 구성 조회
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 카테고리의 평균 영양성분 수치들이 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/nutrients-avg", errorMiddleware, async (req, res, next) => {
+  try {
+    const currentCategoryOriginal = req.query.category;
+    const nutrientsAvg = await graphService.getNutrientsAvg({
+      currentCategoryOriginal,
+    });
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (nutrientsAvg.error) {
+      throw new Error(nutrientsAvg.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(nutrientsAvg);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 레이더차트 -- 특정 음식 영양성분 구성 시각화
+/**
+ * @swagger
+ * /nutrients?food=almonds:
+ *   get:
+ *     summary: 레이더차트 - 특정 음식의 영양성분 조회
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 음식의 영양성분 수치들을 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: food
+ *         in: query
+ *         required: true
+ *         description: 음식명 (소문자)
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/nutrients", errorMiddleware, async (req, res, next) => {
+  try {
+    const currentFoodOriginal = req.query.food;
+    const nutrients = await graphService.getFoodNutrients({
+      currentFoodOriginal,
+    });
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (nutrients.error) {
+      throw new Error(nutrients.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(nutrients);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 막대차트 -- 특정 카테고리 음식들의 특정 영양성분 순위
+/**
+ * @swagger
+ * /food-rank?category=desserts&nutrients=fat:
+ *   get:
+ *     summary: 막대차트 - 특정 카테고리 음식들의 특정 영양성분 순위 조회
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 카테고리에 속한 음식들의 유저가 선택한 영양성분 순서를 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: category
+ *         in: query
+ *         required: true
+ *         description: 카테고리명(소문자로 작성)
+ *         schema:
+ *           type: string
+ *       - name: nutrients
+ *         in: query
+ *         required: true
+ *         description: 영양성분명
+ *     responses:
+ *       200:
+ *         description: success
+ */
+graphRouter.get("/food-rank", errorMiddleware, async (req, res, next) => {
+  try {
+    const currentCategoryOriginal = req.query.category;
+    const currentNutrient = req.query.nutrients;
+    const foodsRank = await graphService.getFoodsRank({
+      currentCategoryOriginal,
+      currentNutrient,
+    });
+
+    // 조회된 데이터가 없으면 에러 반환
+    if (foodsRank.error) {
+      throw new Error(foodsRank.errorMessage);
+    }
+    // 조회된 데이터가 있으면 결과와 함께 반환
+    res.status(200).json(foodsRank);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// 버블 차트 -- 두 개의 영양성분 함량을 x축과 y축으로 비교
+/**
+ * @swagger
+ * /nutrients-comparison?x=protein&y=carbs:
+ *   get:
+ *     summary: 버블 차트 (산포도) - 두 영양성분을 x축과 y축으로 비교
+ *     tags:
+ *     - Graph
+ *     description: 유저가 선택한 영양성분 2가지와 칼로리(고정 z축, 점 크기) 데이터 값 반환
+ *     produces:
+ *     - application/json
+ *     parameters:
+ *       - name: x
+ *         in: query
+ *         required: true
+ *         description: 영양성분명
+ *         schema:
+ *           type: string
+ *       - name: y
+ *         in: query
+ *         required: true
+ *         description: 영양성분명
  *     responses:
  *       200:
  *         description: success
  */
 graphRouter.get(
-  "/food",
-   errorMiddleware,
+  "/nutrients-comparison",
+  errorMiddleware,
   async (req, res, next) => {
     try {
-      const foodList = await graphService.getFood();
-      
+      const { x, y } = req.query;
+      const nutrientsComparison = await graphService.getNutrientsComparison({
+        x,
+        y,
+      });
+
       // 조회된 데이터가 없으면 에러 반환
-      if (foodList.error) {
-        throw new Error(foodList.errorMessage);
+      if (nutrientsComparison.error) {
+        throw new Error(nutrientsComparison.errorMessage);
       }
       // 조회된 데이터가 있으면 결과와 함께 반환
-      res.status(200).json(foodList);
+      res.status(200).json(nutrientsComparison);
     } catch (error) {
       next(error);
     }
   }
 );
-
 
 export { graphRouter };

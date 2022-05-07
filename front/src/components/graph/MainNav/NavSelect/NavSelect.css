@@ -1,0 +1,19 @@
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.Aside {
+  display: flex;
+  flex: none;
+  max-width: 420px;
+}
+
+.Graph {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  justify-content: center;
+      padding-top: 4rem;
+}

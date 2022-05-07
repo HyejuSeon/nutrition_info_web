@@ -12,12 +12,6 @@ class Article {
       const article = await ArticleModel.findOne({ id : articleId });
       return article;
     }
-    
-    // // 게시글의 고유한 id로 게시글 검색(db에 저장되어 있는 게시글 검색)
-    // static async findById({ articleId }) {
-    //   const article = await ArticleModel.findOne({ _id: articleId });
-    //   return article;
-    // }
 
     static async findAll(){
       const articles = await ArticleModel.find({});
@@ -43,6 +37,19 @@ class Article {
       const deleteResult = await ArticleModel.deleteOne({ id: articleId });
       const isDataDeleted = deleteResult.deletedCount === 1;
       return isDataDeleted;
+    }
+
+    static async addFileById({ articleId, filePath }) {
+      const filter = { id : articleId };
+      const update = { filePath : filePath };
+      const option = { new: true };
+
+      const addFileArticle = await ArticleModel.findOneAndUpdate(
+        filter,
+        update,
+        option
+      );
+      return addFileArticle;
     }
 }
   

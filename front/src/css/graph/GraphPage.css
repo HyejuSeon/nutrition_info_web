@@ -1,0 +1,77 @@
+:root {
+    --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
+    --orange: #fca61f;
+    --black: #242d49;
+    --gray: #788097;
+    --purple: linear-gradient(180deg, #BB67FF 0%, #C484F3 100%);
+    --pink: #FF919D;
+    --glass: rgba(255, 255, 255, 0.54);
+    --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
+    --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+    --activeItem: #f799a354;
+}
+
+.GraphPageWrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 68rem;
+}
+
+
+.graphHeaderContainer {
+    width: auto;
+    height: 270px;
+        /* height: 330px;  최적화*/
+
+}
+
+
+.GraphPage {
+    background: linear-gradient(90deg,
+        #151716 50%,
+        #1b2530 100%);
+    margin: 0;
+    /*배경 높이*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 폰트 */
+    font-family: 'Inter', sans-serif;
+}
+
+/* 속지 부분 */
+/* grid-template-columns : 그리드 부분 */
+.GraphPageGlass {
+    /* 배경 그라디언트효과 */
+    background: linear-gradient(106.37deg,
+        #ffe1bc 29.63%,
+        #ffcfd1 51.55%,
+        #f3c6f1 90.85%);
+    display: grid;
+    height: 97%;
+    width: 92%;
+    border-radius: 4rem;
+    background-color: var(--glass);
+    overflow: hidden;
+}
+
+.GraphPageFooter {
+    /* flex: 1 1 0 */
+    overflow: auto;
+    margin-top: auto;
+    width: auto;
+    height: 410px;
+
+}
+
+.GraphPageFooterImg {
+    width: 100%;
+    height: 100%;
+    /* background-image: url(../../images/blog/FoodLogBlog3.jpg); */
+    background-image: url(../../images/graph/garphPageFooter.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

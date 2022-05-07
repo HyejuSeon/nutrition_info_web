@@ -73,6 +73,7 @@ async function handleSubmit() {
         Navigate("/blog", {replace: true});
       } catch (err) {
         console.log("로그인에 실패하였습니다.\n", err);
+        setAlert('아이디 또는 비밀번호를 잘못 입력했습니다')
       }
     }
   }
@@ -83,16 +84,18 @@ async function handleSubmit() {
 
 
   return (
-    <div className='loginContainer'>
-      <LoginHeader />
-      <div className='middleContainer'>
-        <input className='idBox' type='text' name='loginId' placeholder='이메일' value={loginId} onChange={(e) => setLoginId(e.target.value)} />
-        <input className="passwordBox" type='password' name='password' placeholder='패스워드' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <div className='alertBox'>{alert}</div>
-        <button className="loginButton" name="loginButton" onClick={handleSubmit}>Login</button>
+    <div className='loginWrapper'>
+      <div className='loginContainer'>
+        <LoginHeader />
+        <div className='middleContainer'>
+          <input className='idBox' type='text' name='loginId' placeholder='아이디' value={loginId} onChange={(e) => setLoginId(e.target.value)} />
+          <input className="passwordBox" type='password' name='password' placeholder='패스워드' value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className='alertBox'>{alert}</div>
+          <button className="loginButton" name="loginButton" onClick={handleSubmit}>Login</button>
+        </div>
+        <LoginBottom />
+        <LoginBottomAd />
       </div>
-      <LoginBottom />
-      <LoginBottomAd />
     </div>
   )
 }

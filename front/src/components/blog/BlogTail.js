@@ -1,17 +1,23 @@
 import React from 'react'
-import { useNavigate, useParams } from "react-router-dom";
 import '../../css/blog/BlogTail.css'
+import BlogSlider from './BlogSlider';
 
-
-function BlogTail() {
+function BlogTail({topviewedArticleList}) {
 
   return (
-    <div className="blogTailContainer">
-      <div className="blogTail">
+    <>
+      <div className="blogTailTitleBox">
+        <p className="blogTailTitle">조회수 Top5</p>
       </div>
-    </div>
-  )
+      <div className="blogTailSliderBox">
+        <div className="blogTailSlider">        
+        <BlogSlider topviewedArticleList={topviewedArticleList} />
+        </div>
+      </div>
+    </>
+  )   
 
 }
 
 export default BlogTail
+
