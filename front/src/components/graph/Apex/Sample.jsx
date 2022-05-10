@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-
+import './Sampel.css'
 class Sample1 extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +28,7 @@ class Sample1 extends Component {
     
         xaxis: {
         //   categories: ['비스킷', '크래커', '채썬밀비스킷', '와플', '초콜릿크림','스폰지케이크','체리파이','타파오카크림푸딩']
-            categories: ['x축라벨']
+            categories: ['']
             },
 
         legend: {
@@ -98,8 +98,8 @@ class Sample1 extends Component {
 
   render() {
     return (
-        <div className="app">
-            <div className="row">
+        <div className="appCH">
+            <div className="rowChar">
                 <div className="upBarChrat">
                     <Chart
                     options={this.state.optionsUpBar}
@@ -110,10 +110,13 @@ class Sample1 extends Component {
                     />
                 </div>
              </div>
-
-            <div className="row">
-                <p className="col">
-                    <button onClick={this.updateCharts}>UpdateSampel1!</button>
+            <div className="MiddleGN">🧡</div>
+            <div className="rowClick">
+                <p className="colClick">
+                    <button onClick={this.updateCharts} className="BTN">
+                      <span className="shape"></span>
+                      Click ME!!
+                    </button>
                 </p>
             </div>
       </div>

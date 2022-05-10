@@ -65,9 +65,7 @@ class Bubble extends Component {
               fill: {
                   opacity: 0.8
               },
-              title: {
-                  text: '음식 카테고리에 따른 두 영양 성분 상대 비교'
-              },
+
               xaxis: {
                   tickAmount: 12,
                   type: 'category',

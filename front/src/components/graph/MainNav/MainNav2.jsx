@@ -60,16 +60,16 @@ const MainNav2 = () => {
     <div className='MainNav' >
       <div className='MainNavButton'>
         <div className='MainNavGlass1'>
-          <Guide title="GuideB" onChangeMode={() => {
+          <Guide title="Start_" onChangeMode={() => {
             setMode((mode) => 'GUIDE');
           }}></Guide>
-          <Donut title="DonutB" onChangeMode={() => {
+          <Donut title="Donut_" onChangeMode={() => {
             setMode((mode) => 'DONUT');
           }}></Donut>
-          <Radar title="RadarB" onChangeMode={() => {
+          <Radar title="Radar_" onChangeMode={() => {
             setMode((mode) => 'RADAR');
           }}></Radar>       
-          <Bar title="BarB" onChangeMode={() => {
+          <Bar title="Bar__" onChangeMode={() => {
             setMode((mode) => 'BAR');
           }}></Bar>
         </div>

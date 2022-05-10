@@ -1,0 +1,114 @@
+/* General Style */
+
+/* BTN Style */
+.appCH {
+  padding:0px 50px 10px 50px;  
+}
+
+.BTN {
+  position: relative;
+  font-size: 30px;
+  padding: 10px 30px;
+  border: 3px solid rgb(253, 136, 147);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background-color: transparent;
+  color: rgb(255,
+      93,
+      110);
+    cursor: pointer;
+}
+
+
+.BTN:focus {
+  outline: none;
+}
+
+.BTN::before,
+.BTN::after {
+  position: absolute;
+  content: '';
+  width: 25%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 0.3s;
+}
+
+/* Red */
+.BTN::before {
+  top: 0;
+  left: 0;
+  background-color: rgb(38,
+    155,
+    242);
+  transform: translateY(-100%);
+}
+
+/* Orange */
+.BTN::after {
+  top: 0;
+  left: 25%;
+  background: rgb(254,
+    184,
+    49);
+  transform: translateY(100%);
+}
+
+/* Dummy shape to make use of
+before and after pseudo element
+and add background color*/
+.shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  z-index: 0;
+}
+
+.shape::before,
+.shape::after {
+  position: absolute;
+  content: '';
+  width: 25%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+/* Green */
+.shape::before {
+  top: 0;
+  left: 50%;
+  background-color: rgb(38,
+    226,
+    157);
+  transform: translateY(-100%);
+}
+
+/* Purple */
+.shape::after {
+  top: 0;
+  left: 75%;
+  background-color: rgb(139,
+    113,
+    205);
+  transform: translateY(100%);
+}
+
+/* Hover Effect */
+.BTN:hover::before,
+.BTN:hover::after,
+.BTN:hover .shape::before,
+.BTN:hover .shape::after {
+  transform: translateY(0%);
+}
+
+.MiddleGN {
+  padding: 0 10px 0 530px;
+    cursor: pointer;
+}
+
+.rowClick {
+    padding: 50px 0 50px 600px;
+}

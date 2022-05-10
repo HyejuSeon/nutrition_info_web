@@ -1,0 +1,76 @@
+.teamHeaderContainer {
+    width: 100%;
+    height: 270px;
+}
+
+.teamHeader {
+    width: 100%;
+    height: 100%;
+    background-image: url(../../images/team/teamPage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.naviBarG {
+
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    grid-template-columns: 1rem 15rem auto 15rem 1rem;
+
+
+}
+/* 
+.navi1G {
+    width: 5%;
+    height: 100%;
+
+} */
+
+.naviTitleG {
+    height: 100%;
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 2;
+    color: whitesmoke;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-shadow: 2px 3px 4px rgb(86, 85, 85);
+}
+
+
+.navi2G {
+
+    width: 70%;
+    height: 100%;
+}
+
+.NaviContentT {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    /* line-height: 17; */
+}
+
+.NaviContentT button {
+    flex: 1;
+    color: aliceblue;
+
+    text-decoration: none;
+    border: none;
+    background: none;
+
+    font-size: 1em;
+    font-weight: 800;
+    line-height: 8;
+}
+  
+  .NaviContentT button:hover {
+    cursor: pointer;
+    color: black;
+  }

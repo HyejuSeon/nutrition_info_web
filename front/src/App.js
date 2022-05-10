@@ -12,7 +12,7 @@ import Register from "./components/register/Register";
 import Blog from './components/blog/Blog';
 import BlogPost from './components/blog/BlogPost'
 import BlogArticle from './components/blog/BlogArticle';
-import Team from './components/team/Team'
+import TeamPage from './components/team/TeamPage'
 
 export const UserStateContext = createContext(null);
 export const dispatchContext = createContext(null);
@@ -69,7 +69,7 @@ function App() {
               <Route path="/blogArticle/:id" element={<BlogArticle/>} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/team" element={<Team />} />
+              <Route path="/team" element={<TeamPage />} />
               <Route path="*" element={<Main />} />
             
             </Routes>
