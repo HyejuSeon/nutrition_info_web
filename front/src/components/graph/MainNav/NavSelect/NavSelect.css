@@ -3,6 +3,11 @@
   flex: 1;
   flex-direction: row;
 }
+.contentIn {
+  display: flex;
+  flex: 1;
+    flex-direction: column;
+}
 
 .Aside {
   display: flex;
@@ -16,4 +21,14 @@
   overflow: auto;
   justify-content: center;
       padding-top: 4rem;
+}
+
+.TopSpace {
+  padding: 20px 0 30px 15px;
+      cursor: pointer;
+}
+
+.MidSpace {
+  padding:50px 0 10px 1000px;
+      cursor: pointer;
 }

@@ -1,23 +1,24 @@
 #teamInfo {
-    width: 80vw;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    margin: 140px auto auto auto;
+    margin: 1rem auto;
     animation-name: movingUp;
-    animation-duration: 0.5s;
+    animation-duration: 0.9s;
+    animation-timing-function: ease;
   }
   @keyframes movingUp {
     from {
-      opacity: 0;
-      margin-top: 150px;
+      opacity: 0.4;
+      margin-top: 2rem;
     }
     to {
       opacity: 1;
-      margin-top: 140px;
+      margin-top: 1rem;
     }
   }
   #teamInfo .members {
-    flex-direction: row;
+    flex-direction: column;
   }
   #teamInfo ul {
     display: flex;
